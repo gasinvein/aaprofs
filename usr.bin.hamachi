@@ -1,0 +1,25 @@
+# Last Modified: Mon Apr  4 22:43:15 2016
+#include <tunables/global>
+
+/opt/logmein-hamachi/bin/hamachid {
+  #include <abstractions/base>
+  #include <abstractions/dbus>
+  #include <abstractions/nameservice>
+  #include <abstractions/ssl_certs>
+
+  capability net_admin,
+  capability net_raw,
+
+  network inet raw,
+
+  /dev/net/tun rw,
+  /opt/logmein-hamachi/bin/dnsdown rix,
+  /opt/logmein-hamachi/bin/dnsup rix,
+  /opt/logmein-hamachi/bin/hamachid mr,
+
+  /var/lib/logmein-hamachi/ r,
+  /var/lib/logmein-hamachi/** mrwk,
+
+  /{,var/}run/logmein-hamachi/ r,
+  /{,var/}run/logmein-hamachi/** rwk,
+}
