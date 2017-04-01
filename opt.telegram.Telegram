@@ -1,0 +1,47 @@
+# vim:syntax=apparmor
+# Author: Filippe LeMarchand <gasinvein@gmail.com>
+
+#include <tunables/global>
+
+/home/*/.local/bin/Telegram {
+	#include <abstractions/base>
+	#include <abstractions/fonts>
+	#include <abstractions/audio>
+	#include <abstractions/kde>
+	#include <abstractions/gnome>
+	#include <abstractions/dconf>
+	#include <abstractions/dbus-session>
+	#include <abstractions/nameservice>
+	#include <abstractions/user-download>
+	#include <abstractions/private-files-strict>
+
+	/etc/pulse/client.conf.d/ r,
+	/etc/pulse/client.conf.d/* r,
+	/usr/share/{fonts-config,cantarell-fonts,stix-fonts}/conf.avail/*.conf r,
+	# crash on file dialog open
+	/usr/share/glib-2.0/schemas/* r,
+	/etc/xdg/kdeglobals r,
+	owner @{HOME}/.config/kdeglobals r,
+	owner /{var/,}run/user/*/dconf/user rw,
+
+	/usr/bin/notify-send rPux,
+
+	owner @{HOME}/.local/bin/Telegram rwix,
+	owner @{HOME}/.local/bin/Updater rwix,
+	owner @{HOME}/.local/share/applications/telegramdesktop.desktop rw,
+	owner @{HOME}/.kde4/share/kde4/services/tg.protocol rw,
+
+	owner @{HOME}/.TelegramDesktop/ rw,
+	owner @{HOME}/.TelegramDesktop/** rwlk,
+	owner @{HOME}/.TelegramDesktop/Telegram rwix,
+	owner @{HOME}/.TelegramDesktop/Updater rwix,
+
+	@{PROC}/@{pid}/cmdline r,
+
+	/bin/bash rix,
+	/dev/tty rw,
+	/usr/bin/desktop-file-install rix,
+	/usr/bin/gconftool-2 rix,
+
+	owner /media/** rw,
+}
