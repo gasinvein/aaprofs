@@ -1,0 +1,38 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2006 Novell/SUSE
+#    Copyright (C) 2009-2011 Canonical Ltd.
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+# kde5
+/usr/lib*/qt5/plugins/*/*.so mr,
+/usr/lib*/qt5/plugins/* r,
+/usr/lib/@{multiarch}/qt5/plugins/*/*.so mr,
+/usr/lib/@{multiarch}/qt5/plugins/*/ r,
+/usr/lib*/qt5/qml/** mr,
+/usr/lib/@{multiarch}/qt5/qml/** mr,
+/usr/share/qt5/** r,
+/etc/xdg/kdeglobals r,
+/usr/share/kservices5/ r,
+/usr/share/kservices5/** r,
+/usr/share/color-schemes/* r,
+/usr/share/plasma/look-and-feel/*/contents/defaults r,
+owner @{HOME}/.config/kdeglobals rw,
+owner @{HOME}/.config/kdeglobals.* rw,
+owner @{HOME}/.config/kdeglobals.lock rwk,
+owner @{HOME}/.config/klanguageoverridesrc r,
+owner @{HOME}/.config/breezerc r,
+owner @{HOME}/.config/trashrc r,
+owner @{HOME}/.config/*.lock rwl,
+owner @{HOME}/.cache/icon-cache.kcache rw,
+owner @{HOME}/.cache/ksycoca5* r,
+owner @{HOME}/.local/share/user-places.xbel r,
+owner @{HOME}/.local/share/user-places.xbel.* rw,
+owner @{HOME}/.local/share/kservices5/ r,
+owner @{HOME}/.local/share/kservices5/* r,
+owner @{HOME}/.local/share/qt_temp.* rw,
