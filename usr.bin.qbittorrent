@@ -45,10 +45,6 @@
 	owner @{HOME}/.cache/qBittorrent/ rw,
 	owner @{HOME}/.cache/qBittorrent/** rw,
 
-	# Torrent files
-	owner /media/ r,
-	owner /media/** rw,
-
 	# GeoIP settings
 	/usr/share/GeoIP/GeoIP.dat r,
 
@@ -75,4 +71,6 @@
 	/usr/lib*/python*/lib-dynload/*.so mr,
 	/usr/bin/xdg-open rPUx,
 	/usr/bin/xdg-mime rPUx,
+
+	#include <local/qbittorrent>
 }
