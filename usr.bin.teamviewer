@@ -1,0 +1,145 @@
+#include <tunables/global>
+
+/usr/bin/teamviewer {
+}
+
+/opt/teamviewer/tv_bin/TVGuiDelegate {
+}
+
+/opt/teamviewer/tv_bin/TVGuiSlave.32 {
+}
+
+/opt/teamviewer/tv_bin/TVGuiSlave.64 {
+}
+
+/opt/teamviewer/tv_bin/script/teamviewer {
+	#include <abstractions/base>
+	#include <abstractions/nameservice>
+	#include <abstractions/X>
+	#include <abstractions/dbus>
+	#include <abstractions/dbus-session>
+	#include <abstractions/user-tmp>
+	#include <abstractions/fonts>
+	#include <abstractions/audio>
+	#include <abstractions/ssl_certs>
+	#include <abstractions/consoles>
+
+	capability sys_ptrace,
+	capability dac_override,
+
+	/opt/teamviewer/ r,
+	/opt/teamviewer/tv_bin/wine/** mr,
+	/opt/teamviewer/tv_bin/RTlib/** mr,
+	/opt/teamviewer/tv_bin/resources/** mr,
+
+	/opt/teamviewer/tv_bin/script/** rix,
+	/opt/teamviewer/tv_bin/teamviewerd rpx,
+	/opt/teamviewer/tv_bin/TVGuiDelegate rix,
+	/opt/teamviewer/tv_bin/TVGuiSlave.32 rix,
+	/opt/teamviewer/tv_bin/TVGuiSlave.64 rix,
+
+	/opt/teamviewer/tv_bin/wine/bin/wine rix,
+	/opt/teamviewer/tv_bin/wine/bin/wineserver rix,
+	/opt/teamviewer/tv_bin/wine/bin/wine-preloader rix,
+
+	/{var/,}run/teamviewerd.pid krw,
+	/run/teamviewerd.ipc krw,
+	
+	/etc/teamviewer/ r,
+	/etc/teamviewer/** krw,
+	/var/log/teamviewer*/ r,
+	/var/log/teamviewer*/* krw,
+
+	/bin/ps rix,
+	/bin/bash rix,
+	/usr/bin/env rix,
+	/usr/bin/readlink rix,
+	/usr/bin/dirname rix,
+	/usr/bin/egrep rix,
+	/usr/bin/grep rix,
+	/usr/bin/flock rix,
+	/usr/bin/tee rix,
+	/usr/bin/cat rix,
+	/usr/bin/xprop rix,
+	/usr/bin/cut rix,
+	/usr/bin/id rix,
+	/usr/bin/mkdir rix,
+	/usr/bin/rm rix,
+	/usr/bin/ln rix,
+	/usr/bin/cp rix,
+	/usr/bin/chmod rix,
+	/usr/bin/wc rix,
+	/usr/bin/touch rix,
+	/usr/bin/sleep rix,
+	/usr/bin/xdg-open rix,
+
+	@{HOME}/.local/share/teamviewer** krw,
+	@{HOME}/.config/teamviewer** krw,
+
+	/etc/issue r,
+	/usr/share/terminfo/x/xterm r,
+	
+	@{HOME}/.cache/fontconfig/ r,
+	@{HOME}/.cache/fontconfig/* rwk, 
+	/usr/share/fonts-config/conf.avail/* r,
+
+	/dev/fb0 r,
+	/tmp/.X11-unix/ r,
+	/tmp/.X11-unix/** r,
+    
+	@{PROC}/sys/kernel/{ostype,osrelease} r,
+	@{PROC}/uptime r,
+	@{PROC}/@{pid}/** r,
+	
+	/{dev,run}/shm/pulse-shm* mr,
+	/etc/pulse/client.conf.d/ r,
+	
+	@{HOME}/.config/Trolltech.conf rk,
+	
+	/usr/share/icons/** r,
+	/usr/share/locale/*/LC_MESSAGES/libc.mo mr,
+	
+	/usr/share/ghostscript/fonts/ r,
+	/usr/share/stix-fonts/conf.avail/* r,
+	/usr/share/cantarell-fonts/conf.avail/* r,
+
+	/sys/devices/system/cpu/cpufreq/policy[0-9]/{cpuinfo_max,scaling_max,scaling_cur}_freq r,
+	/sys/devices/**/net/*/uevent r,
+}
+
+/opt/teamviewer/tv_bin/teamviewerd {
+	#include <abstractions/base>
+	#include <abstractions/nameservice>
+	#include <abstractions/X>
+	#include <abstractions/consoles>
+
+	capability sys_ptrace,
+	capability dac_override,
+
+	/{var/,}run/teamviewerd.pid krw,
+	/run/teamviewerd.ipc krw,
+	
+	/etc/teamviewer/** krw,
+	/var/log/teamviewer*/ r,
+	/var/log/teamviewer*/* krw,
+
+	/opt/teamviewer/ r,
+	/opt/teamviewer/tv_bin/teamviewerd mr,
+
+	@{HOME}/.local/share/teamviewer** krw,
+	@{HOME}/.config/teamviewer** krw,
+
+	/dev/fb0 rw,
+	/tmp/.X11-unix/ r,
+
+	@{PROC}/@{pid}/** r,
+
+#	/etc/passwd mr,
+#	/etc/fstab r,
+	/etc/machine-id r,
+	/etc/issue r,
+	/etc/os-release r,
+
+	/sys/devices/system/cpu/cpufreq/policy[0-9]/{cpuinfo_max,scaling_max,scaling_cur}_freq r,
+	/sys/devices/**/net/*/uevent r,
+}
