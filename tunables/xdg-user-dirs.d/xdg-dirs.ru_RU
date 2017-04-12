@@ -1,0 +1,21 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2014 Canonical Ltd.
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+# The following may be used to add additional entries such as for
+# translations. See tunables/xdg-user-dirs for details. Eg:
+#@{XDG_MUSIC_DIR}+="Musique"
+
+@{XDG_DESKTOP_DIR}+="Рабочий стол"
+@{XDG_DOWNLOAD_DIR}+="Загрузки"
+@{XDG_TEMPLATES_DIR}+="Шаблоны"
+@{XDG_PUBLICSHARE_DIR}+="Общедоступные"
+@{XDG_DOCUMENTS_DIR}+="Документы"
+@{XDG_MUSIC_DIR}+="Музыка"
+@{XDG_PICTURES_DIR}+="Изображения"
+@{XDG_VIDEOS_DIR}+="Видео"
