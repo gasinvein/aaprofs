@@ -38,6 +38,9 @@
 	owner @{HOME}/.TelegramDesktop/Telegram rwix,
 	owner @{HOME}/.TelegramDesktop/Updater rwix,
 
+	/usr/bin/xdg-open rPUx,
+	/usr/bin/xdg-mime rPUx,
+
 	@{PROC}/@{pid}/cmdline r,
 
 	/bin/bash rix,
